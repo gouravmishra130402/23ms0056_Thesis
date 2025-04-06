@@ -1,0 +1,22 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generating a sine wave
+t = np.linspace(0, 10 * np.pi, 100)  # Taking 100 points from 0 to 10π
+sine_wave = np.sin(t)
+
+# Defining time delay (τ)
+tau = 5 # Choose a suitable delay
+
+# Creating 2D embedding
+x_vals = sine_wave[:-tau]      # x(t)
+y_vals = sine_wave[tau:]       # x(t + τ)
+
+# Plotting the 2D sliding window embedding
+plt.figure(figsize=(6, 6))
+plt.scatter(x_vals, y_vals, c='b', marker='o', s=5)
+plt.xlabel("X(t)")
+plt.ylabel("X(t+τ)")
+plt.title("2D Sliding Window Embedding of Sine Wave")
+plt.grid()
+plt.show()

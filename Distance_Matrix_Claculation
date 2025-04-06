@@ -1,0 +1,13 @@
+from scipy.spatial.distance import pdist, squareform
+
+# Computing the pairwise Euclidean distance matrix
+distance_matrix = squareform(pdist(embedded_points))
+
+# Plotting the distance matrix
+plt.figure(figsize=(6, 5))
+plt.imshow(distance_matrix, cmap='viridis', aspect='auto')
+plt.colorbar(label="Distance")
+plt.xlabel("Point Index")
+plt.ylabel("Point Index")
+plt.title("Step 3: Distance Matrix")
+plt.show()

@@ -1,0 +1,4 @@
+# Plotting the Persistence Diagram
+import persim
+plt.figure(figsize=(6, 4))
+persim.plot_diagrams(diagrams, show=True, title="Persistence diagram of 2D Sine Wave Embedding")

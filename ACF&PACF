@@ -1,0 +1,21 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+# Generating a perfect sine wave (no noise)
+time = np.linspace(0, 10 * np.pi, 300)
+sine_wave = np.sin(time)
+
+# Creating DataFrame
+df = pd.DataFrame({"Time": time, "Sine_Wave": sine_wave})
+df.set_index("Time", inplace=True)
+
+# Plotting ACF and PACF
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+plot_acf(df["Sine_Wave"], lags=40, ax=axes[0])
+plot_pacf(df["Sine_Wave"], lags=40, ax=axes[1], method='ywm')
+axes[0].set_title("Autocorrelation Function (ACF)")
+axes[1].set_title("Partial Autocorrelation Function (PACF)")
+plt.tight_layout()
+plt.show()

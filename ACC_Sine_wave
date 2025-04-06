@@ -1,0 +1,14 @@
+from statsmodels.tsa.stattools import acf
+
+# Computing autocorrelation
+lags = 50  # Number of lags to consider
+autocorr_values = acf(sine_wave, nlags=lags)
+
+# Plotting autocorrelation function
+plt.figure(figsize=(8, 4))
+plt.stem(range(lags + 1), autocorr_values, markerfmt='bo', linefmt='b-') 
+plt.xlabel("Lag")
+plt.ylabel("Autocorrelation")
+plt.title("Autocorrelation of Sine Wave")
+plt.grid()
+plt.show()

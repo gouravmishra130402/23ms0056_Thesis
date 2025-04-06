@@ -1,0 +1,31 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.fftpack import fft, fftfreq, fftshift
+
+# Defining the time domain
+t = np.linspace(0, 10 * np.pi, 100)  # 100 points from 0 to 10π
+f_signal = np.sin(t)  # Sine wave
+
+# Computing the Fourier Transform
+fft_values = fft(f_signal)  # Computing FFT
+freqs = fftfreq(len(t), (t[1] - t[0]) / (2 * np.pi))  # Computing frequencies
+fft_values_shifted = fftshift(fft_values)  # Shifting zero freq to center
+freqs_shifted = fftshift(freqs)  # Shifting frequencies accordingly
+
+# Plotting the magnitude spectrum (showing both positive and negative frequencies)
+plt.figure(figsize=(8, 4))
+plt.plot(freqs_shifted, np.abs(fft_values_shifted), color='black')  # Spectrum
+plt.scatter(freqs_shifted[np.argmax(np.abs(fft_values_shifted))], 
+            np.max(np.abs(fft_values_shifted)), 
+            color='blue', s=100, label="Peak")  # Highlighting positive peak
+plt.scatter(-freqs_shifted[np.argmax(np.abs(fft_values_shifted))], 
+            np.max(np.abs(fft_values_shifted)), 
+            color='blue', s=100)  # Highlighting negative peak
+
+# Labels and title
+plt.xlabel("Frequency")
+plt.ylabel("Magnitude")
+plt.title("Fourier Transform Spectrum of a Sine Wave")
+plt.grid()
+plt.legend()
+plt.show()
